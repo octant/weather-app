@@ -4,6 +4,7 @@ import './App.css'
 import './css/weather-icons.css'
 import Weather from './Weather'
 import Main from './Main'
+import countries from './countries'
 
 class App extends Component {
   constructor (props) {
@@ -13,7 +14,7 @@ class App extends Component {
       url: 'http://api.openweathermap.org/data/2.5/weather',
       appid: '2bc782ac273d090fe409ddf32b73cc9c',
       city: 'Sault Ste. Marie',
-      country: 'ca',
+      country: 'CA',
       data: {},
       fetched: false
     }
@@ -53,9 +54,9 @@ class App extends Component {
         <h1>Weather App</h1>
         <input onChange={this.handleChange} type='text' value={this.state.city} name='city' />
         <select onChange={this.handleChange} name='country' value={this.state.country}>
-          <option value='ca'>CA</option>
-          <option value='uk'>UK</option>
-          <option value='us'>US</option>
+          {countries.map((country) => {
+            return <option key={country.code} value={country.code}>{country.code}</option>
+          })}
         </select>
         <button onClick={this.handleClick}>Search</button>
         <h2>{this.state.data.name}</h2>
