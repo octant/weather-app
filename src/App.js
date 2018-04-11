@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import Weather from './Weather'
+import Main from './Main'
 
 class App extends Component {
   constructor (props) {
@@ -34,9 +35,12 @@ class App extends Component {
         <h1>Weather App</h1>
         <h2>{this.state.data.name}</h2>
         {this.state.fetched
-          ? this.state.data.weather.map((period, i) => (
-            <Weather key={i} weather={period} />
-          ))
+          ? <div>
+            {this.state.data.weather.map((period, i) => (
+              <Weather key={i} weather={period} />
+            ))}
+            <Main main={this.state.data.main} />
+          </div>
           : <p>Loading...</p>
         }
       </div>
