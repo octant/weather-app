@@ -12,9 +12,13 @@ class App extends Component {
     this.state = {
       url: 'http://api.openweathermap.org/data/2.5/weather',
       appid: '2bc782ac273d090fe409ddf32b73cc9c',
+      city: '',
       data: {},
       fetched: false
     }
+
+    this.handleChange = this.handleChange.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
 
   componentDidMount () {
@@ -30,10 +34,20 @@ class App extends Component {
       })
   }
 
+  handleChange (e) {
+    this.setState({city: e.target.value})
+  }
+
+  handleClick (e) {
+    console.log(this.state.city)
+  }
+
   render () {
     return (
       <div>
         <h1>Weather App</h1>
+        <input onChange={this.handleChange} type='text' value={this.state.city} name='city' />
+        <button onClick={this.handleClick}>Search</button>
         <h2>{this.state.data.name}</h2>
         {this.state.fetched
           ? <div>
