@@ -12,7 +12,8 @@ class App extends Component {
     this.state = {
       url: 'http://api.openweathermap.org/data/2.5/weather',
       appid: '2bc782ac273d090fe409ddf32b73cc9c',
-      city: '',
+      city: 'Sault Ste. Marie',
+      country: 'ca',
       data: {},
       fetched: false
     }
@@ -22,24 +23,28 @@ class App extends Component {
   }
 
   componentDidMount () {
-    fetch(`${this.state.url}?q=London,ca&appid=${this.state.appid}`)
+    this.fetchWeather()
+  }
+
+  fetchWeather () {
+    fetch(`${this.state.url}?q=${this.state.city},${this.state.country}&appid=${this.state.appid}`)
       .then((response) => {
         return response.json()
       })
       .then((json) => {
-        this.setState(({data}) => ({data: json, fetched: true}))
+        this.setState(() => ({error: '', data: json, fetched: true}))
       })
       .catch((error) => {
-        console.log(error)
+        this.setState(() => ({error, data: {}, fetched: false}))
       })
   }
 
   handleChange (e) {
-    this.setState({city: e.target.value})
+    this.setState({[e.target.name]: e.target.value})
   }
 
   handleClick (e) {
-    console.log(this.state.city)
+    this.fetchWeather()
   }
 
   render () {
@@ -47,6 +52,11 @@ class App extends Component {
       <div>
         <h1>Weather App</h1>
         <input onChange={this.handleChange} type='text' value={this.state.city} name='city' />
+        <select onChange={this.handleChange} name='country' value={this.state.country}>
+          <option value='ca'>CA</option>
+          <option value='uk'>UK</option>
+          <option value='us'>US</option>
+        </select>
         <button onClick={this.handleClick}>Search</button>
         <h2>{this.state.data.name}</h2>
         {this.state.fetched
