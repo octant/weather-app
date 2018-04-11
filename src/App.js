@@ -8,7 +8,9 @@ class App extends Component {
 
     this.state = {
       url: 'http://api.openweathermap.org/data/2.5/weather',
-      appid: '2bc782ac273d090fe409ddf32b73cc9c'
+      appid: '2bc782ac273d090fe409ddf32b73cc9c',
+      data: {},
+      fetched: false
     }
   }
 
@@ -18,7 +20,7 @@ class App extends Component {
         return response.json()
       })
       .then((json) => {
-        console.log(json)
+        this.setState(({data}) => ({data: json, fetched: true}))
       })
       .catch((error) => {
         console.log(error)
@@ -29,6 +31,7 @@ class App extends Component {
     return (
       <div>
         <h1>Weather App</h1>
+        <h2>{this.state.data.name}</h2>
       </div>
     )
   }
