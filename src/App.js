@@ -3,8 +3,17 @@ import React, { Component } from 'react'
 import './App.css'
 
 class App extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      url: 'http://api.openweathermap.org/data/2.5/weather',
+      appid: '2bc782ac273d090fe409ddf32b73cc9c'
+    }
+  }
+
   componentDidMount () {
-    fetch('http://api.openweathermap.org/data/2.5/weather?q=London,ca&appid=2bc782ac273d090fe409ddf32b73cc9c')
+    fetch(`${this.state.url}?q=London,ca&appid=${this.state.appid}`)
       .then((response) => {
         return response.json()
       })
