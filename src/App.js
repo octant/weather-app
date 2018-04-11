@@ -30,6 +30,13 @@ class App extends Component {
   fetchWeather () {
     fetch(`${this.state.url}?q=${this.state.city},${this.state.country}&appid=${this.state.appid}`)
       .then((response) => {
+        if (response.status === 200) {
+          return response
+        } else {
+          throw new Error(response.statusText)
+        }
+      })
+      .then((response) => {
         return response.json()
       })
       .then((json) => {
@@ -65,7 +72,7 @@ class App extends Component {
             {this.state.data.weather.map((period, i) => (
               <Weather key={i} weather={period} />
             ))}
-            <Main main={this.state.data.main} />
+            <Main main={this.state.data.main} units='C' />
           </div>
           : <p>Loading...</p>
         }
