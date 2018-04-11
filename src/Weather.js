@@ -1,7 +1,8 @@
 import React from 'react'
+import icons from './icon-mappings'
 
 const Weather = ({weather}) => (
-  <p><strong>{weather.main}</strong>: {weather.description}</p>
+  <p><i className={`wi wi-${icons[weather.id]}`} /> {weather.description}</p>
 )
 
 export default Weather

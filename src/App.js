@@ -1,6 +1,7 @@
 /* globals fetch */
 import React, { Component } from 'react'
 import './App.css'
+import './css/weather-icons.css'
 import Weather from './Weather'
 import Main from './Main'
 
