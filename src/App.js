@@ -15,6 +15,7 @@ class App extends Component {
       appid: '2bc782ac273d090fe409ddf32b73cc9c',
       city: 'Sault Ste. Marie',
       country: 'CA',
+      units: 'C',
       data: {},
       fetched: false
     }
@@ -65,6 +66,11 @@ class App extends Component {
             return <option key={country.code} value={country.code}>{country.code}</option>
           })}
         </select>
+        <select onChange={this.handleChange} name='units' value={this.state.units}>
+          <option value={'C'}>&#8451;</option>
+          <option value={'F'}>&#x2109;</option>
+          <option value={'K'}>&#8490;</option>
+        </select>
         <button onClick={this.handleClick}>Search</button>
         <h2>{this.state.data.name}</h2>
         {this.state.fetched
@@ -72,7 +78,7 @@ class App extends Component {
             {this.state.data.weather.map((period, i) => (
               <Weather key={i} weather={period} />
             ))}
-            <Main main={this.state.data.main} units='C' />
+            <Main main={this.state.data.main} units={this.state.units} />
           </div>
           : <p>Loading...</p>
         }
