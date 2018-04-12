@@ -50,7 +50,7 @@ class App extends Component {
 
   render () {
     return (
-      <div>
+      <div className='container'>
         <h1>Weather App</h1>
         <input onChange={this.handleChange} type='text' value={this.state.city} name='city' />
         <select onChange={this.handleChange} name='country' value={this.state.country}>
