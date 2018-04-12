@@ -44,7 +44,7 @@ class App extends Component {
 
   render () {
     return (
-      <div>
+      <div className='container'>
         <h1>Weather App</h1>
         <input onChange={this.handleChange} type='text' value={this.state.city} name='city' />
         <button onClick={this.handleClick}>Search</button>
