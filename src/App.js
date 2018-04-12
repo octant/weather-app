@@ -30,7 +30,7 @@ class App extends Component {
 
   render () {
     return (
-      <div>
+      <div class='container'>
         <h1>Weather App</h1>
         <h2>{this.state.data.name}</h2>
         {this.state.fetched
