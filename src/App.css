@@ -26,3 +26,17 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.container {
+  position: relative;
+  padding: 1em;
+}
+
+.column {
+  width: 50%;
+  float: left;
+}
+
+.search-result :hover {
+  cursor: pointer;
+}
